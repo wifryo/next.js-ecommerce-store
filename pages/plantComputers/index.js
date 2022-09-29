@@ -1,25 +1,29 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { fruitsDatabase } from '../../database/fruits';
+import { plantComputers } from '../../database/plantComputers';
 
-export default function Fruits(props) {
+export default function PlantComputers(props) {
   return (
     <>
       <Head>
-        <title>Fruits</title>
-        <meta name="description" content="Biography of the animals" />
+        <title>Plant Computers</title>
+        <meta name="description" content="Plant computers" />
+        <style>
+          @import
+          url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,400;1,800&display=swap');
+        </style>
       </Head>
 
-      {props.fruits.map((fruit) => {
+      {props.plantComputers.map((item) => {
         return (
-          <div key={`fruit-div-${fruit.id}`}>
+          <div key={`item-div-${item.id}`}>
             <h2>
-              <Link href={`/fruits/${fruit.id}`}>
-                <a>{fruit.name}</a>
+              <Link href={`/plantcomputers/${item.id}`}>
+                <a>{item.name}</a>
               </Link>
             </h2>
             <div>
-              {fruit.icon} ⭐️ {fruit.stars}
+              {item.icon} ⭐️ {item.stars}
             </div>
           </div>
         );

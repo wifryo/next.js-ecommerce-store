@@ -4,18 +4,24 @@ import Link from 'next/link';
 const headerStyles = css`
   background-color: #15141d;
   margin: 0px, 20px, 0px, 20px;
+  padding-bottom: 200px;
 `;
 
 const topLineContainerStyles = css`
+  padding-left: 20px;
+  padding-right: 20px;
   display: flex;
   justify-content: space-between;
 `;
 
 const logoStyles = css`
-  font-family: 'J-LOG';
   color: #eaebe2;
   font-style: italic;
   padding: 10px;
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-weight: 800;
+  font-style: italic;
+  font-size: 30px;
   a {
     text-decoration: none;
   }
@@ -25,10 +31,13 @@ const logoStyles = css`
 `;
 
 const navStyles = css`
+  font-family: 'Montserrat Alternates', sans-serif;
+  align-self: center;
   margin: 0px;
   padding: 10px;
   a {
     color: #eaebe2;
+    text-decoration: none;
   }
   > a + a {
     margin-left: 13px;
@@ -43,11 +52,11 @@ export default function Header() {
           <Link href="/">CRUNDSP</Link>
         </div>
         <nav css={navStyles}>
-          <Link href="/animals">Animals</Link>
-          <Link href="/about">About</Link>
-          <Link href="/fruits">Fruits</Link>
-          <Link href="/team">Team Index</Link>
-          <Link href="/team/list">Team List</Link>
+          <Link href="/crumps">crumps</Link>
+          <Link href="/miscellany">miscellany</Link>
+          <Link href="/about">about</Link>
+          <Link href="/team">team</Link>
+          <Link href="/contact">contact</Link>
 
           {/*
           Using an <a> tag is not best practice for

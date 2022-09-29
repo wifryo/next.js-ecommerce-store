@@ -7,13 +7,6 @@ function MyApp({ Component, pageProps }) {
     <>
       <Global
         styles={css`
-          @font-face {
-            font-family: 'J-LOG';
-            font-style: normal;
-            font-display: swap;
-            src: url(/fonts/J-LOG-Rebellion-Sans-Small-Caps-Italic.otf)
-              format('otf');
-          }
           *,
           *::before,
           *::after {
@@ -22,9 +15,17 @@ function MyApp({ Component, pageProps }) {
 
           body {
             margin: 0;
+            background: rgb(53, 50, 73);
+            background: radial-gradient(
+              circle,
+              rgba(53, 50, 73, 1) 0%,
+              rgba(26, 25, 36, 1) 46%,
+              rgba(21, 20, 29, 1) 75%
+            );
           }
         `}
       />
+
       <CookieBanner />
       <Layout>
         {/*

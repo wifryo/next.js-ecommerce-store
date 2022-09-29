@@ -1,19 +1,19 @@
 import Cookies from 'js-cookie';
 import Head from 'next/head';
 import Link from 'next/link';
-import { fruitsDatabase } from '../../database/fruits';
+import { fruitsDatabase } from '../../database/plantComputers';
 import { getParsedCookie, setStringifiedCookie } from '../../utils/cookies';
 
-export default function Fruit(props) {
+export default function plantComputers(props) {
   if (props.error) {
     return (
       <div>
         <Head>
-          <title>fruit not found</title>
-          <meta name="description" content="fruit not found" />
+          <title>product not found</title>
+          <meta name="description" content="product not found" />
         </Head>
         <h1>{props.error}</h1>
-        Sorry, try the <Link href="/fruits">fruits page</Link>
+        Sorry, try the <Link href="/index">home page</Link>
       </div>
     );
   }
@@ -21,8 +21,8 @@ export default function Fruit(props) {
   return (
     <div>
       <Head>
-        <title>Fruit single page</title>
-        <meta name="description" content="Fruit single page" />
+        <title>Product single page</title>
+        <meta name="description" content="Product single page" />
       </Head>
 
       <h1>{props.singleFruit.name}</h1>

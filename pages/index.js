@@ -1,5 +1,11 @@
+import { css } from '@emotion/react';
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
+
+const bodyStyles = css`
+  margin: 0px, 20px, 0px, 20px;
+`;
 
 export default function Home() {
   return (
@@ -7,9 +13,13 @@ export default function Home() {
       <Head>
         <title>Home</title>
         <meta name="description" content="Overview of the animals" />
+        <style>
+          @import
+          url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,400;1,800&display=swap');
+        </style>
       </Head>
 
-      <div>Home</div>
+      <div css={bodyStyles}>Home</div>
 
       {/*
         The Next.js Image component will perform

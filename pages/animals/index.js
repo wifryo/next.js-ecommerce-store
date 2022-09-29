@@ -24,6 +24,10 @@ export default function Animals(props) {
       <Head>
         <title>All of the animals</title>
         <meta name="description" content="List page of all animals" />
+        <style>
+          @import
+          url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,400;1,800&display=swap');
+        </style>
       </Head>
 
       <h1>Animals</h1>
