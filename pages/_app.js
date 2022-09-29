@@ -1,25 +1,31 @@
 import { css, Global } from '@emotion/react';
-import Layout from '../components/layout';
+import CookieBanner from '../components/CookieBanner';
+import Layout from '../components/Layout';
 
 function MyApp({ Component, pageProps }) {
   return (
     <>
       <Global
         styles={css`
+          @font-face {
+            font-family: 'J-LOG';
+            font-style: normal;
+            font-display: swap;
+            src: url(/fonts/J-LOG-Rebellion-Sans-Small-Caps-Italic.otf)
+              format('otf');
+          }
           *,
           *::before,
           *::after {
             box-sizing: border-box;
           }
+
           body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-              Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
-              sans-serif;
             margin: 0;
           }
         `}
       />
-
+      <CookieBanner />
       <Layout>
         {/*
           The "Component" component refers to
