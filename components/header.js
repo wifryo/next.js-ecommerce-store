@@ -35,9 +35,11 @@ const navStyles = css`
   align-self: center;
   margin: 0px;
   padding: 10px;
+
   a {
     color: #eaebe2;
     text-decoration: none;
+    font-size: 12px;
   }
   > a + a {
     margin-left: 13px;

@@ -5,6 +5,7 @@ import Header from './Header';
 
 const mainStyles = css`
   padding: 10px 20px;
+  flex-grow: 1;
 `;
 
 export default function Layout(props) {

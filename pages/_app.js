@@ -22,6 +22,9 @@ function MyApp({ Component, pageProps }) {
               rgba(26, 25, 36, 1) 46%,
               rgba(21, 20, 29, 1) 75%
             );
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
           }
         `}
       />
