@@ -1,10 +1,10 @@
 import Cookies from 'js-cookie';
 import Head from 'next/head';
 import Link from 'next/link';
-import { fruitsDatabase } from '../../database/plantComputers';
+import { crumpsDatabase } from '../../database/crumps';
 import { getParsedCookie, setStringifiedCookie } from '../../utils/cookies';
 
-export default function plantComputers(props) {
+export default function crumps(props) {
   if (props.error) {
     return (
       <div>
@@ -25,8 +25,8 @@ export default function plantComputers(props) {
         <meta name="description" content="Product single page" />
       </Head>
 
-      <h1>{props.singleFruit.name}</h1>
-      <div>{props.singleFruit.icon}</div>
+      <h1>{props.singleCrump.name}</h1>
+      <div>{props.singleCrump.icon}</div>
       <button
         onClick={() => {
           // getting the value of the cookie stars
@@ -35,20 +35,20 @@ export default function plantComputers(props) {
           // if there is no cookie we initialize the value with a -1
           if (!currentCookieValue) {
             setStringifiedCookie('stars', [
-              { id: props.singleFruit.id, stars: -1 },
+              { id: props.singleCrump.id, stars: -1 },
             ]);
             return;
           }
 
           // find the object that match the id of the page
           const foundCookie = currentCookieValue.find(
-            (cookieFruitObject) =>
-              cookieFruitObject.id === props.singleFruit.id,
+            (cookieCrumpObject) =>
+              cookieCrumpObject.id === props.singleCrump.id,
           );
 
           // if a object is not found i add a new object
           if (!foundCookie) {
-            currentCookieValue.push({ id: props.singleFruit.id, stars: -1 });
+            currentCookieValue.push({ id: props.singleCrump.id, stars: -1 });
           } else {
             // if a object is found i update the stars
             foundCookie.stars--;
@@ -67,20 +67,20 @@ export default function plantComputers(props) {
           // if there is no cookie we initialize the value with a 1
           if (!currentCookieValue) {
             setStringifiedCookie('stars', [
-              { id: props.singleFruit.id, stars: 1 },
+              { id: props.singleCrump.id, stars: 1 },
             ]);
             return;
           }
 
           // find the object that match the id of the page
           const foundCookie = currentCookieValue.find(
-            (cookieFruitObject) =>
-              cookieFruitObject.id === props.singleFruit.id,
+            (cookieCrumpObject) =>
+              cookieCrumpObject.id === props.singleCrump.id,
           );
 
           // if a object is not found i add a new object
           if (!foundCookie) {
-            currentCookieValue.push({ id: props.singleFruit.id, stars: 1 });
+            currentCookieValue.push({ id: props.singleCrump.id, stars: 1 });
           } else {
             // if a object is found i update the stars
             foundCookie.stars++;
@@ -96,22 +96,22 @@ export default function plantComputers(props) {
 }
 
 export function getServerSideProps(context) {
-  const fruitId = context.params.fruitId;
+  const crumpId = context.params.crumpId;
 
-  const fruits = fruitsDatabase;
+  const crumpsBlap = crumpsDatabase;
 
-  const singleFruit = fruits.find((fruit) => {
-    return fruit.id === fruitId;
+  const singleCrump = crumpsBlap.find((crump) => {
+    return crump.id === crumpId;
   });
 
-  if (typeof singleFruit === 'undefined') {
+  if (typeof singleCrump === 'undefined') {
     context.res.statusCode = 404;
     return {
       props: {
-        error: 'Fruit not found',
+        error: 'Crump not found',
       },
     };
   }
 
-  return { props: { singleFruit: singleFruit } };
+  return { props: { singleCrump: singleCrump } };
 }

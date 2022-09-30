@@ -1,10 +1,10 @@
 import { css } from '@emotion/react';
 import Head from 'next/head';
-import Image from 'next/image';
 import Link from 'next/link';
 
 const bodyStyles = css`
   margin: 0px, 20px, 0px, 20px;
+  min-height: calc(100vh - 320px);
 `;
 
 export default function Home() {
@@ -19,7 +19,7 @@ export default function Home() {
         </style>
       </Head>
 
-      <div css={bodyStyles}>Home</div>
+      <div css={bodyStyles}>BODY!</div>
 
       {/*
         The Next.js Image component will perform

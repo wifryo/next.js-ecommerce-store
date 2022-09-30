@@ -1,7 +1,6 @@
 import { css } from '@emotion/react';
 
 const footerStyles = css`
-  margin-top: auto;
   padding: 15px 20px;
   background-color: #15141d;
   display: flex;
