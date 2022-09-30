@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import { crumpsDatabase } from '../../database/crumps';
+import { miscellanysDatabase } from '../../database/miscellanys';
 
 const bodyStyles = css`
   margin: 0px, 20px, 0px, 20px;
@@ -58,12 +58,12 @@ const baseWrapper = css`
   justify-content: space-between;
 `;
 
-export default function Crumps(props) {
+export default function Miscellanys(props) {
   return (
     <>
       <Head>
-        <title>crumps</title>
-        <meta name="description" content="crumps" />
+        <title>miscellanys</title>
+        <meta name="description" content="miscellanys" />
         <style>
           @import
           url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,400;1,800&display=swap');
@@ -71,25 +71,25 @@ export default function Crumps(props) {
       </Head>
 
       <div css={bodyStyles}>
-        {props.crumps.map((crump) => {
+        {props.miscellanys.map((miscellany) => {
           return (
-            <div css={cardStyles} key={`item-div-${crump.id}`}>
+            <div css={cardStyles} key={`item-div-${miscellany.id}`}>
               <Image
                 css={imageStyles}
-                src={`/crumps/crump${crump.id}.webp`}
-                alt={`photo of ${crump.name}`}
+                src={`/miscellany/miscellany${miscellany.id}.png`}
+                alt={`photo of ${miscellany.name}`}
                 width="300"
                 height="300"
               />
               <h2 css={titleStyles}>
-                <Link href={`/crumps/${crump.id}`}>
-                  <a>{crump.name}</a>
+                <Link href={`/miscellanys/${miscellany.id}`}>
+                  <a>{miscellany.name}</a>
                 </Link>
               </h2>
 
-              <h3 css={descriptionStyles}>{crump.description}</h3>
+              <h3 css={descriptionStyles}>{miscellany.description}</h3>
               <div css={baseWrapper}>
-                <div css={priceStyles}>{crump.price}</div>
+                <div css={priceStyles}>{miscellany.price}</div>
                 <button css={buttonStyles}>Add to cart</button>
               </div>
             </div>
@@ -109,19 +109,20 @@ export function getServerSideProps(context) {
     : [];
 
   // loop over the database and add a new property called stars with either the value in the cookies or 0
-  const crumps = crumpsDatabase.map((crump) => {
+  const miscellanys = miscellanysDatabase.map((miscellany) => {
     return {
-      ...crump,
+      ...miscellany,
       stars:
         parsedCookies.find(
-          (cookieCrumpObject) => crump.id === cookieCrumpObject.id,
+          (cookieMiscellanyObject) =>
+            miscellany.id === cookieMiscellanyObject.id,
         )?.stars || 0,
     };
   });
 
   return {
     props: {
-      crumps: crumps,
+      miscellanys: miscellanys,
     },
   };
 }
