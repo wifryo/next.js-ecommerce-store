@@ -13,18 +13,44 @@ const bodyStyles = css`
 `;
 const cardStyles = css`
   width: 300px;
-  height: 500px;
-  border-radius: 25px;
-  border: 2px solid #587d71;
+  height: 800px;
   display: flex;
   flex-direction: column;
   margin-right: 30px;
   margin-bottom: 30px;
 `;
 const imageStyles = css`
-  border-top-left-radius: 25px;
-  border-top-right-radius: 25px;
   margin: 0;
+`;
+
+const priceStyles = css`
+  font-weight: 700;
+  position: relative;
+  padding-left: 10px;
+  align-self: center;
+`;
+
+const titleStyles = css`
+  font-size: 20px;
+`;
+
+const descriptionStyles = css`
+  font-size: 15px;
+  font-family: 'Montserrat Alternates', sans-serif;
+  text-align: left;
+`;
+
+const buttonStyles = css`
+  font-size: 20px;
+  width: 140px;
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-size: 15px;
+  margin-right: 10px;
+`;
+
+const baseWrapper = css`
+  display: flex;
+  justify-content: space-between;
 `;
 
 export default function Crumps(props) {
@@ -50,12 +76,17 @@ export default function Crumps(props) {
                 width="300"
                 height="300"
               />
-              <h2>
+              <h2 css={titleStyles}>
                 <Link href={`/crumps/${crump.id}`}>
                   <a>{crump.name}</a>
                 </Link>
               </h2>
-              <div>{/* {crump.icon} ⭐️ {item.stars} */}</div>
+
+              <h3 css={descriptionStyles}>{crump.description}</h3>
+              <div css={baseWrapper}>
+                <div css={priceStyles}>{crump.price}</div>
+                <button css={buttonStyles}>Add to cart</button>
+              </div>
             </div>
           );
         })}
