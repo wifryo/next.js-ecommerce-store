@@ -1,4 +1,4 @@
-export const miscellanysDatabase = [
+export const miscellaniaDatabase = [
   {
     id: '1',
     name: 'borgus beef coffee table fountain',

@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie';
 import Head from 'next/head';
 import Link from 'next/link';
-import { miscellanysDatabase } from '../../database/miscellanys';
+import { miscellanysDatabase } from '../../database/miscellania';
 import { getParsedCookie, setStringifiedCookie } from '../../utils/cookies';
 
 export default function miscellanys(props) {

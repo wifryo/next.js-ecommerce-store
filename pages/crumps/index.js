@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import { crumpsDatabase } from '../../database/crumps';
+import { getProducts } from '../../database/products';
 
 const bodyStyles = css`
   margin: 0px, 20px, 0px, 20px;
@@ -11,13 +12,16 @@ const bodyStyles = css`
   flex-wrap: wrap;
   position: relative;
   justify-content: center;
+  margin-right: calc(50vw - 370px);
+  margin-left: calc(50vw - 370px);
 `;
 const cardStyles = css`
   width: 300px;
   height: 500px;
   display: flex;
   flex-direction: column;
-  margin-right: 30px;
+  margin-right: 20px;
+  margin-left: 20px;
   margin-bottom: 50px;
 `;
 const imageStyles = css`
@@ -69,27 +73,26 @@ export default function Crumps(props) {
           url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,400;1,800&display=swap');
         </style>
       </Head>
-
       <div css={bodyStyles}>
-        {props.crumps.map((crump) => {
+        {props.products.map((product) => {
           return (
-            <div css={cardStyles} key={`item-div-${crump.id}`}>
+            <div css={cardStyles} key={`item-div-${product.id}`}>
               <Image
                 css={imageStyles}
-                src={`/crumps/crump${crump.id}.webp`}
-                alt={`photo of ${crump.name}`}
+                src={`/crumps/product${product.id}.webp`}
+                alt={`photo of ${product.name}`}
                 width="300"
                 height="300"
               />
               <h2 css={titleStyles}>
-                <Link href={`/crumps/${crump.id}`}>
-                  <a>{crump.name}</a>
+                <Link href={`/crumps/${product.id}`}>
+                  <a>{product.name}</a>
                 </Link>
               </h2>
 
-              <h3 css={descriptionStyles}>{crump.description}</h3>
+              <h3 css={descriptionStyles}>{product.description}</h3>
               <div css={baseWrapper}>
-                <div css={priceStyles}>{crump.price}</div>
+                <div css={priceStyles}>{product.price}</div>
                 <button css={buttonStyles}>Add to cart</button>
               </div>
             </div>
@@ -100,7 +103,7 @@ export default function Crumps(props) {
   );
 }
 
-export function getServerSideProps(context) {
+/* export function getServerSideProps(context) {
   console.log(context.req.cookies.stars);
 
   // get the cookies from the request object and parse it if is not undefined
@@ -109,12 +112,12 @@ export function getServerSideProps(context) {
     : [];
 
   // loop over the database and add a new property called stars with either the value in the cookies or 0
-  const crumps = crumpsDatabase.map((crump) => {
+  const crumps = crumpsDatabase.map((product) => {
     return {
-      ...crump,
+      ...product,
       stars:
         parsedCookies.find(
-          (cookieCrumpObject) => crump.id === cookieCrumpObject.id,
+          (cookieCrumpObject) => product.id === cookieCrumpObject.id,
         )?.stars || 0,
     };
   });
@@ -122,6 +125,15 @@ export function getServerSideProps(context) {
   return {
     props: {
       crumps: crumps,
+    },
+  };
+} */
+
+export async function getServerSideProps() {
+  const products = await getProducts();
+  return {
+    props: {
+      products: products,
     },
   };
 }

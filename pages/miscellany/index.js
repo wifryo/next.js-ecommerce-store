@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import { miscellanysDatabase } from '../../database/miscellanys';
+import { miscellaniaDatabase } from '../../database/miscellania';
 
 const bodyStyles = css`
   margin: 0px, 20px, 0px, 20px;
@@ -58,12 +58,12 @@ const baseWrapper = css`
   justify-content: space-between;
 `;
 
-export default function Miscellanys(props) {
+export default function Miscellania(props) {
   return (
     <>
       <Head>
-        <title>miscellanys</title>
-        <meta name="description" content="miscellanys" />
+        <title>miscellania</title>
+        <meta name="description" content="miscellania" />
         <style>
           @import
           url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,400;1,800&display=swap');
@@ -71,7 +71,7 @@ export default function Miscellanys(props) {
       </Head>
 
       <div css={bodyStyles}>
-        {props.miscellanys.map((miscellany) => {
+        {props.miscellania.map((miscellany) => {
           return (
             <div css={cardStyles} key={`item-div-${miscellany.id}`}>
               <Image
@@ -82,7 +82,7 @@ export default function Miscellanys(props) {
                 height="300"
               />
               <h2 css={titleStyles}>
-                <Link href={`/miscellanys/${miscellany.id}`}>
+                <Link href={`/miscellania/${miscellany.id}`}>
                   <a>{miscellany.name}</a>
                 </Link>
               </h2>
@@ -109,7 +109,7 @@ export function getServerSideProps(context) {
     : [];
 
   // loop over the database and add a new property called stars with either the value in the cookies or 0
-  const miscellanys = miscellanysDatabase.map((miscellany) => {
+  const miscellania = miscellaniaDatabase.map((miscellany) => {
     return {
       ...miscellany,
       stars:
@@ -122,7 +122,7 @@ export function getServerSideProps(context) {
 
   return {
     props: {
-      miscellanys: miscellanys,
+      miscellania: miscellania,
     },
   };
 }
