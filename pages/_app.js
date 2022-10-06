@@ -1,8 +1,25 @@
 import { css, Global } from '@emotion/react';
+import { useEffect, useState } from 'react';
 import CookieBanner from '../components/CookieBanner';
 import Layout from '../components/Layout';
+import { getParsedCookie, setStringifiedCookie } from '../utils/cookies';
 
 function MyApp({ Component, pageProps }) {
+  const [cart, setCart] = useState();
+
+  useEffect(() => {
+    const cartCookie = getParsedCookie('cart');
+    if (cartCookie) {
+      setCart(cartCookie);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof cart !== 'undefined') {
+      setStringifiedCookie('cart', cart);
+    }
+  }, [cart]);
+
   return (
     <>
       <Global
@@ -34,7 +51,7 @@ function MyApp({ Component, pageProps }) {
           The "Component" component refers to
           the current page that is being rendered
         */}
-        <Component {...pageProps} />
+        <Component {...pageProps} cart={cart} setCart={setCart} />
       </Layout>
     </>
   );

@@ -1,10 +1,22 @@
 import { css } from '@emotion/react';
+import Image from 'next/image';
 import Link from 'next/link';
 
 const headerStyles = css`
   background-color: #15141d;
   margin: 0px, 20px, 0px, 20px;
-  padding-bottom: 200px;
+  padding-bottom: 50px;
+`;
+
+const imageContainer = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const imageStyles = css`
+  color: #eaebe2;
+  opacity: 0.1;
 `;
 
 const topLineContainerStyles = css`
@@ -54,7 +66,7 @@ export default function Header() {
           <Link href="/">CRUNDSP</Link>
         </div>
         <nav css={navStyles}>
-          <Link href="/crumps">crumps</Link>
+          <Link href="/products">products</Link>
           <Link href="/miscellany">miscellany</Link>
           <Link href="/about">about</Link>
           <Link href="/team">team</Link>
@@ -67,6 +79,15 @@ export default function Header() {
           <a href="/about">About</a>
         */}
         </nav>
+      </div>
+      <div css={imageContainer}>
+        <Image
+          css={imageStyles}
+          src="/crundsp-eye.svg"
+          alt="picture of stylised eye"
+          width="300"
+          height="200"
+        />
       </div>
     </header>
   );

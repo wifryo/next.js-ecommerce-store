@@ -2,7 +2,6 @@ import { css } from '@emotion/react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import { crumpsDatabase } from '../../database/crumps';
 import { getProducts } from '../../database/products';
 
 const bodyStyles = css`
@@ -62,12 +61,12 @@ const baseWrapper = css`
   justify-content: space-between;
 `;
 
-export default function Crumps(props) {
+export default function Products(props) {
   return (
     <>
       <Head>
-        <title>crumps</title>
-        <meta name="description" content="crumps" />
+        <title>products</title>
+        <meta name="description" content="products" />
         <style>
           @import
           url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,400;1,800&display=swap');
@@ -79,13 +78,13 @@ export default function Crumps(props) {
             <div css={cardStyles} key={`item-div-${product.id}`}>
               <Image
                 css={imageStyles}
-                src={`/crumps/product${product.id}.webp`}
+                src={`/products/product${product.id}.webp`}
                 alt={`photo of ${product.name}`}
                 width="300"
                 height="300"
               />
               <h2 css={titleStyles}>
-                <Link href={`/crumps/${product.id}`}>
+                <Link href={`/products/${product.id}`}>
                   <a>{product.name}</a>
                 </Link>
               </h2>
@@ -102,32 +101,6 @@ export default function Crumps(props) {
     </>
   );
 }
-
-/* export function getServerSideProps(context) {
-  console.log(context.req.cookies.stars);
-
-  // get the cookies from the request object and parse it if is not undefined
-  const parsedCookies = context.req.cookies.stars
-    ? JSON.parse(context.req.cookies.stars)
-    : [];
-
-  // loop over the database and add a new property called stars with either the value in the cookies or 0
-  const crumps = crumpsDatabase.map((product) => {
-    return {
-      ...product,
-      stars:
-        parsedCookies.find(
-          (cookieCrumpObject) => product.id === cookieCrumpObject.id,
-        )?.stars || 0,
-    };
-  });
-
-  return {
-    props: {
-      crumps: crumps,
-    },
-  };
-} */
 
 export async function getServerSideProps() {
   const products = await getProducts();
