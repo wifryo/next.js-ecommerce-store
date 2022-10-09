@@ -13,12 +13,14 @@ const bodyStyles = css`
   position: relative;
   justify-content: center;
 `;
+
 const cardStyles = css`
-  width: 300px;
-  height: 500px;
+  width: 800px;
+  height: 300px;
   display: flex;
-  flex-direction: column;
-  margin-right: 30px;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
   margin-bottom: 50px;
 `;
 const imageStyles = css`
@@ -27,36 +29,55 @@ const imageStyles = css`
 
 const priceStyles = css`
   font-weight: 700;
-  position: relative;
-  padding-left: 10px;
-  align-self: center;
+  align-self: flex-start;
+  margin-bottom: 40px;
 `;
 
 const titleStyles = css`
-  font-size: 18px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  align-self: flex-start;
   a {
     text-decoration: none;
     color: #eaebe2;
   }
 `;
 
-const descriptionStyles = css`
+const quantityStyles = css`
+  margin-left: 30px;
+  margin-right: 30px;
+`;
+
+const containerStyles = css`
+  width: 300px;
   font-size: 15px;
-  font-family: 'Montserrat Alternates', sans-serif;
-  text-align: left;
+  text-align: center;
+  margin-left: 20px;
+`;
+
+const descriptionsStyles = css`
+  display: flex;
+  flex-direction: column;
 `;
 
 const buttonStyles = css`
-  font-size: 20px;
-  width: 140px;
+  width: 30px;
   font-family: 'Montserrat Alternates', sans-serif;
   font-size: 15px;
-  margin-right: 10px;
+  align-self: flex-end;
+  background-color: transparent;
+  border: 0;
+  color: #eaebe2;
+  margin-bottom: 20px;
 `;
 
 const baseWrapper = css`
   display: flex;
   justify-content: space-between;
+`;
+
+const headerStyles = css`
+  margin-left: calc(50vw - 330px);
 `;
 
 export default function Cart(props) {
@@ -70,8 +91,10 @@ export default function Cart(props) {
           url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,400;1,800&display=swap');
         </style>
       </Head>
+      <div>
+        <h1 css={headerStyles}>cart</h1>
+      </div>
       <div css={bodyStyles}>
-        <h1>Cart</h1>
         {!props.cart?.length ? (
           <div>Empty cart alert! Load up on items or get out of my sight</div>
         ) : (
@@ -81,6 +104,7 @@ export default function Cart(props) {
             );
             return (
               <div
+                css={cardStyles}
                 key={`product-${currentProduct.id}`}
                 data-test-id={`cart-product-${currentProduct.id}`}
               >
@@ -88,6 +112,7 @@ export default function Cart(props) {
                   <Link href={`/products/${currentProduct.id}`}>
                     <a data-test-id={`product-${currentProduct.id}`}>
                       <Image
+                        css={imageStyles}
                         src={`/crumps/crump${currentProduct.id}.webp`}
                         alt={`photo of ${currentProduct.name}`}
                         width="300"
@@ -96,12 +121,17 @@ export default function Cart(props) {
                     </a>
                   </Link>
                 </div>
-                <div>
-                  <div>{currentProduct.name}</div>
-                  <div>
-                    <div>{currentProduct.price}</div>
+                <div css={containerStyles}>
+                  <div css={descriptionsStyles}>
+                    <button css={buttonStyles}>X</button>
+                    <div css={titleStyles}>{currentProduct.name}</div>
+                    <div css={priceStyles}>{currentProduct.price}</div>
+                    <span>
+                      <button>-</button>
+                      <span css={quantityStyles}>{singleProduct.cart}</span>
+                      <button>+</button>
+                    </span>
                   </div>
-                  <div>Quantity: {singleProduct.cart}</div>
                 </div>
               </div>
             );

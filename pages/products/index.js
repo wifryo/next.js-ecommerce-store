@@ -4,6 +4,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { getProducts } from '../../database/products';
 
+const headerStyles = css`
+  margin-left: calc(50vw - 350px);
+`;
+
 const bodyStyles = css`
   margin: 0px, 20px, 0px, 20px;
   min-height: calc(100vh - 320px);
@@ -46,6 +50,7 @@ const descriptionStyles = css`
   font-size: 15px;
   font-family: 'Montserrat Alternates', sans-serif;
   text-align: left;
+  font-weight: 300;
 `;
 
 const buttonStyles = css`
@@ -72,6 +77,9 @@ export default function Products(props) {
           url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,400;1,800&display=swap');
         </style>
       </Head>
+      <div>
+        <h1 css={headerStyles}>produccs</h1>
+      </div>
       <div css={bodyStyles}>
         {props.products.map((product) => {
           return (

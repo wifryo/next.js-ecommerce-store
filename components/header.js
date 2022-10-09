@@ -58,7 +58,19 @@ const navStyles = css`
   }
 `;
 
-export default function Header() {
+const cartStyles = css`
+  color: #eaebe2;
+  text-decoration: none;
+  font-size: 12px;
+  margin-left: 13px;
+  cursor: pointer;
+`;
+
+export default function Header(props) {
+  const cartTotal = () => {
+    return props.cart?.reduce((counter, item) => counter + item.cart, 0);
+  };
+
   return (
     <header css={headerStyles}>
       <div css={topLineContainerStyles}>
@@ -67,11 +79,13 @@ export default function Header() {
         </div>
         <nav css={navStyles}>
           <Link href="/products">products</Link>
-          <Link href="/miscellany">miscellany</Link>
           <Link href="/about">about</Link>
           <Link href="/team">team</Link>
           <Link href="/contact">contact</Link>
-          <Link href="/cart">cart</Link>
+          <Link href="/cart">
+            <span css={cartStyles}> cart [{props.cart ? cartTotal() : 0}]</span>
+          </Link>
+
           {/*
           Using an <a> tag is not best practice for
           most links (it will be slower) - use a

@@ -46,11 +46,7 @@ function MyApp({ Component, pageProps }) {
       />
 
       <CookieBanner />
-      <Layout>
-        {/*
-          The "Component" component refers to
-          the current page that is being rendered
-        */}
+      <Layout cart={cart}>
         <Component {...pageProps} cart={cart} setCart={setCart} />
       </Layout>
     </>

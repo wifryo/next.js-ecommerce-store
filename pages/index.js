@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const bodyStyles = css`
   margin: 0px, 20px, 0px, 20px;
-  min-height: calc(100vh - 320px);
+  min-height: calc(100vh - 370px);
 `;
 
 export default function Home() {
