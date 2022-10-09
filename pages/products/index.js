@@ -78,7 +78,7 @@ export default function Products(props) {
             <div css={cardStyles} key={`item-div-${product.id}`}>
               <Image
                 css={imageStyles}
-                src={`/products/product${product.id}.webp`}
+                src={`/crumps/crump${product.id}.webp`}
                 alt={`photo of ${product.name}`}
                 width="300"
                 height="300"

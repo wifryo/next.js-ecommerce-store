@@ -71,7 +71,7 @@ export default function Header() {
           <Link href="/about">about</Link>
           <Link href="/team">team</Link>
           <Link href="/contact">contact</Link>
-
+          <Link href="/cart">cart</Link>
           {/*
           Using an <a> tag is not best practice for
           most links (it will be slower) - use a

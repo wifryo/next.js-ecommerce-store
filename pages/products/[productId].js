@@ -5,7 +5,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import { getProductById } from '../../database/products';
-import { getParsedCookie, setStringifiedCookie } from '../../utils/cookies';
 
 const imageStyles = css`
   margin: 0;
@@ -61,7 +60,7 @@ export default function Products(props) {
         <div css={descriptionStyles}>{props.singleProduct.description}</div>
         <Image
           css={imageStyles}
-          src={`/products/product${props.singleProduct.id}.webp`}
+          src={`/crumps/crump${props.singleProduct.id}.webp`}
           alt={`photo of ${props.singleProduct.name}`}
           width="300"
           height="300"
@@ -78,7 +77,9 @@ export default function Products(props) {
         >
           -
         </button>
-        <div data-test-id="product-quantity">{selectedQuantity}</div>
+        <span>
+          <div data-test-id="product-quantity">{selectedQuantity}</div>
+        </span>
         <button
           onClick={() => setSelectedQuantity(selectedQuantity + 1)}
           css={quantityButtonStyles}
@@ -93,8 +94,6 @@ export default function Products(props) {
               props.setCart([
                 {
                   id: props.singleProduct.id,
-                  name: props.singleProduct.name,
-                  price: props.singleProduct.price,
                   cart: selectedQuantity,
                 },
               ]);
@@ -103,16 +102,12 @@ export default function Products(props) {
 
             const foundCookie = props.cart?.find(
               (cookieProductObject) =>
-                cookieProductObject.id === props.singleProduct.id &&
-                cookieProductObject.name === props.singleProduct.name &&
-                cookieProductObject.price === props.singleProduct.price,
+                cookieProductObject.id === props.singleProduct.id,
             );
 
             if (!foundCookie) {
               props.cart.push({
                 id: props.singleProduct.id,
-                name: props.singleProduct.name,
-                price: props.singleProduct.price,
                 cart: selectedQuantity,
               });
             } else {
