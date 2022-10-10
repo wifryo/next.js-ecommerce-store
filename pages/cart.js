@@ -60,7 +60,7 @@ const descriptionsStyles = css`
   flex-direction: column;
 `;
 
-const buttonStyles = css`
+const deleteButtonStyles = css`
   width: 30px;
   font-family: 'Montserrat Alternates', sans-serif;
   font-size: 15px;
@@ -69,6 +69,7 @@ const buttonStyles = css`
   border: 0;
   color: #eaebe2;
   margin-bottom: 20px;
+  cursor: pointer;
 `;
 
 const baseWrapper = css`
@@ -79,6 +80,26 @@ const baseWrapper = css`
 const headerStyles = css`
   margin-left: calc(50vw - 330px);
 `;
+
+function removeProduct(functionProps, id) {
+  const newCart = functionProps.cart?.filter((item) => item.id !== id);
+  functionProps.setCart(newCart);
+}
+
+function reduceItem(functionProps, id) {
+  const foundCookie = functionProps.cart?.find(
+    (cookieProductObject) => cookieProductObject.id === id,
+  );
+  console.log(`pleb: ${foundCookie}`);
+  if (foundCookie.cart > 1) {
+    foundCookie.cart--;
+  } else {
+    removeProduct(functionProps, id);
+  }
+
+  const newQuantity = [...functionProps.cart];
+  functionProps.setCart(newQuantity);
+}
 
 export default function Cart(props) {
   return (
@@ -123,11 +144,15 @@ export default function Cart(props) {
                 </div>
                 <div css={containerStyles}>
                   <div css={descriptionsStyles}>
-                    <button css={buttonStyles}>X</button>
+                    <button css={deleteButtonStyles}>X</button>
                     <div css={titleStyles}>{currentProduct.name}</div>
                     <div css={priceStyles}>{currentProduct.price}</div>
                     <span>
-                      <button>-</button>
+                      <button
+                        onClick={() => reduceItem(props, currentProduct.id)}
+                      >
+                        -
+                      </button>
                       <span css={quantityStyles}>{singleProduct.cart}</span>
                       <button>+</button>
                     </span>
