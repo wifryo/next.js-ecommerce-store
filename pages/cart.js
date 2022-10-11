@@ -5,9 +5,9 @@ import Link from 'next/link';
 import { getProducts } from '../database/products';
 import { getParsedCookie } from '../utils/cookies';
 
-const bodyStyles = css`
+const mainStyles = css`
   margin: 0px, 20px, 0px, 20px;
-  min-height: calc(100vh - 320px);
+  min-height: calc(100vh - 455px);
   display: flex;
   flex-wrap: wrap;
   position: relative;
@@ -81,7 +81,7 @@ const headerStyles = css`
   margin-left: calc(50vw - 330px);
 `;
 
-function removeProduct(functionProps, id) {
+function removeItem(functionProps, id) {
   const newCart = functionProps.cart?.filter((item) => item.id !== id);
   functionProps.setCart(newCart);
 }
@@ -90,15 +90,15 @@ function reduceItem(functionProps, id) {
   const foundCookie = functionProps.cart?.find(
     (cookieProductObject) => cookieProductObject.id === id,
   );
-  console.log(`pleb: ${foundCookie}`);
   if (foundCookie.cart > 1) {
     foundCookie.cart--;
+    const newQuantity = [...functionProps.cart];
+    functionProps.setCart(newQuantity);
   } else {
-    removeProduct(functionProps, id);
+    removeItem(functionProps, id);
   }
 
-  const newQuantity = [...functionProps.cart];
-  functionProps.setCart(newQuantity);
+  // this only changes the functionProps variable - need to change the actual props
 }
 
 export default function Cart(props) {
@@ -115,7 +115,7 @@ export default function Cart(props) {
       <div>
         <h1 css={headerStyles}>cart</h1>
       </div>
-      <div css={bodyStyles}>
+      <div css={mainStyles}>
         {!props.cart?.length ? (
           <div>Empty cart alert! Load up on items or get out of my sight</div>
         ) : (
@@ -144,7 +144,12 @@ export default function Cart(props) {
                 </div>
                 <div css={containerStyles}>
                   <div css={descriptionsStyles}>
-                    <button css={deleteButtonStyles}>X</button>
+                    <button
+                      css={deleteButtonStyles}
+                      onClick={() => removeItem(props, currentProduct.id)}
+                    >
+                      X
+                    </button>
                     <div css={titleStyles}>{currentProduct.name}</div>
                     <div css={priceStyles}>{currentProduct.price}</div>
                     <span>

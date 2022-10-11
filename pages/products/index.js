@@ -10,7 +10,7 @@ const headerStyles = css`
 
 const bodyStyles = css`
   margin: 0px, 20px, 0px, 20px;
-  min-height: calc(100vh - 320px);
+  min-height: calc(100vh - 455px);
   display: flex;
   flex-wrap: wrap;
   position: relative;
@@ -81,26 +81,58 @@ export default function Products(props) {
         <h1 css={headerStyles}>produccs</h1>
       </div>
       <div css={bodyStyles}>
-        {props.products.map((product) => {
+        {props.products.map((singleProduct) => {
           return (
-            <div css={cardStyles} key={`item-div-${product.id}`}>
+            <div css={cardStyles} key={`item-div-${singleProduct.id}`}>
               <Image
                 css={imageStyles}
-                src={`/crumps/crump${product.id}.webp`}
-                alt={`photo of ${product.name}`}
+                src={`/crumps/crump${singleProduct.id}.webp`}
+                alt={`photo of ${singleProduct.name}`}
                 width="300"
                 height="300"
               />
               <h2 css={titleStyles}>
-                <Link href={`/products/${product.id}`}>
-                  <a>{product.name}</a>
+                <Link href={`/products/${singleProduct.id}`}>
+                  <a>{singleProduct.name}</a>
                 </Link>
               </h2>
 
-              <h3 css={descriptionStyles}>{product.description}</h3>
+              <h3 css={descriptionStyles}>{singleProduct.description}</h3>
               <div css={baseWrapper}>
-                <div css={priceStyles}>{product.price}</div>
-                <button css={buttonStyles}>Add to cart</button>
+                <div css={priceStyles}>{singleProduct.price}</div>
+                <button
+                  css={buttonStyles}
+                  onClick={() => {
+                    if (!props.cart) {
+                      props.setCart([
+                        {
+                          id: singleProduct.id,
+                          cart: 1,
+                        },
+                      ]);
+                      return;
+                    }
+
+                    const foundCookie = props.cart?.find(
+                      (cookieProductObject) =>
+                        cookieProductObject.id === singleProduct.id,
+                    );
+
+                    if (!foundCookie) {
+                      props.cart.push({
+                        id: singleProduct.id,
+                        cart: 1,
+                      });
+                    } else {
+                      foundCookie.cart = foundCookie.cart + 1;
+                    }
+                    const newQuantity = [...props.cart];
+
+                    props.setCart(newQuantity);
+                  }}
+                >
+                  Add to cart
+                </button>
               </div>
             </div>
           );

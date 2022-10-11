@@ -77,7 +77,7 @@ const headerStyles = css`
   margin-left: calc(50vw - 330px);
 `;
 
-export default function About() {
+export default function Team() {
   return (
     <>
       <Head>
@@ -89,10 +89,10 @@ export default function About() {
         </style>
       </Head>
       <div>
-        <h1 css={headerStyles}>about</h1>
+        <h1 css={headerStyles}>team</h1>
       </div>
       <div css={mainStyles}>
-        plerp, slerp, glerp. that's what CRUNDSP is all about.
+        wow! these assholes make CRUNDSP a thing, and not just not a thing!
       </div>
     </>
   );
