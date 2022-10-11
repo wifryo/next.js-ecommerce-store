@@ -5,13 +5,15 @@ import Link from 'next/link';
 import { getProducts } from '../database/products';
 import { getParsedCookie } from '../utils/cookies';
 
-const mainStyles = css`
+const bodyStyles = css`
   margin: 0px, 20px, 0px, 20px;
   min-height: calc(100vh - 455px);
   display: flex;
   flex-wrap: wrap;
   position: relative;
   justify-content: center;
+  margin-right: calc(50vw - 400px);
+  margin-left: calc(50vw - 400px);
 `;
 
 const cardStyles = css`
@@ -72,9 +74,10 @@ const deleteButtonStyles = css`
   cursor: pointer;
 `;
 
-const baseWrapper = css`
-  display: flex;
-  justify-content: space-between;
+const totalStyles = css`
+  position: fixed;
+  bottom: 50px;
+  left: 50vw;
 `;
 
 const headerStyles = css`
@@ -97,8 +100,28 @@ function reduceItem(functionProps, id) {
   } else {
     removeItem(functionProps, id);
   }
+}
 
-  // this only changes the functionProps variable - need to change the actual props
+function increaseItem(functionProps, id) {
+  const foundCookie = functionProps.cart?.find(
+    (cookieProductObject) => cookieProductObject.id === id,
+  );
+  foundCookie.cart++;
+  const newQuantity = [...functionProps.cart];
+  functionProps.setCart(newQuantity);
+}
+
+function returnTotalPrice(functionProps) {
+  const priceArray = functionProps.cart?.map((cart) => {
+    return {
+      price: functionProps.products.find(
+        (productObject) => cart.id === productObject.id,
+      )?.price,
+      quantity: cart.cart,
+    };
+  });
+  console.log(priceArray);
+  //return total price
 }
 
 export default function Cart(props) {
@@ -115,7 +138,8 @@ export default function Cart(props) {
       <div>
         <h1 css={headerStyles}>cart</h1>
       </div>
-      <div css={mainStyles}>
+      {console.log(`plop: ${props.cart[0]}`)}
+      <div css={bodyStyles}>
         {!props.cart?.length ? (
           <div>Empty cart alert! Load up on items or get out of my sight</div>
         ) : (
@@ -159,7 +183,11 @@ export default function Cart(props) {
                         -
                       </button>
                       <span css={quantityStyles}>{singleProduct.cart}</span>
-                      <button>+</button>
+                      <button
+                        onClick={() => increaseItem(props, currentProduct.id)}
+                      >
+                        +
+                      </button>
                     </span>
                   </div>
                 </div>
@@ -167,6 +195,12 @@ export default function Cart(props) {
             );
           })
         )}
+      </div>
+      <div css={totalStyles}>
+        Cart total: plap!{' '}
+        <button onClick={() => returnTotalPrice(props)}>
+          returnTotalPrice
+        </button>
       </div>
     </>
   );

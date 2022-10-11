@@ -20,7 +20,7 @@ const bodyStyles = css`
 `;
 const cardStyles = css`
   width: 300px;
-  height: 500px;
+  height: 550px;
   display: flex;
   flex-direction: column;
   margin-right: 20px;
