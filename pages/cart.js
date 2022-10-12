@@ -2,6 +2,7 @@ import { css } from '@emotion/react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect, useRef, useState } from 'react';
 import { getProducts } from '../database/products';
 import { getParsedCookie } from '../utils/cookies';
 
@@ -74,7 +75,9 @@ const deleteButtonStyles = css`
   cursor: pointer;
 `;
 
-const totalStyles = css`
+const totalStyles = css``;
+
+const totalContainerStyles = css`
   position: fixed;
   bottom: 50px;
   left: 50vw;
@@ -111,6 +114,10 @@ function increaseItem(functionProps, id) {
   functionProps.setCart(newQuantity);
 }
 
+function sumProductQuantity(total, arrayObject) {
+  return total + arrayObject.price * arrayObject.quantity;
+}
+
 function returnTotalPrice(functionProps) {
   const priceArray = functionProps.cart?.map((cart) => {
     return {
@@ -120,11 +127,12 @@ function returnTotalPrice(functionProps) {
       quantity: cart.cart,
     };
   });
-  console.log(priceArray);
-  //return total price
+  const cartTotal = priceArray?.reduce(sumProductQuantity, 0);
+  return cartTotal;
 }
 
 export default function Cart(props) {
+  const cartSum = () => returnTotalPrice(props);
   return (
     <>
       <Head>
@@ -138,7 +146,6 @@ export default function Cart(props) {
       <div>
         <h1 css={headerStyles}>cart</h1>
       </div>
-      {console.log(`plop: ${props.cart[0]}`)}
       <div css={bodyStyles}>
         {!props.cart?.length ? (
           <div>Empty cart alert! Load up on items or get out of my sight</div>
@@ -170,7 +177,9 @@ export default function Cart(props) {
                   <div css={descriptionsStyles}>
                     <button
                       css={deleteButtonStyles}
-                      onClick={() => removeItem(props, currentProduct.id)}
+                      onClick={() => {
+                        removeItem(props, currentProduct.id);
+                      }}
                     >
                       X
                     </button>
@@ -178,13 +187,17 @@ export default function Cart(props) {
                     <div css={priceStyles}>{currentProduct.price}</div>
                     <span>
                       <button
-                        onClick={() => reduceItem(props, currentProduct.id)}
+                        onClick={() => {
+                          reduceItem(props, currentProduct.id);
+                        }}
                       >
                         -
                       </button>
                       <span css={quantityStyles}>{singleProduct.cart}</span>
                       <button
-                        onClick={() => increaseItem(props, currentProduct.id)}
+                        onClick={() => {
+                          increaseItem(props, currentProduct.id);
+                        }}
                       >
                         +
                       </button>
@@ -196,11 +209,9 @@ export default function Cart(props) {
           })
         )}
       </div>
-      <div css={totalStyles}>
-        Cart total: plap!{' '}
-        <button onClick={() => returnTotalPrice(props)}>
-          returnTotalPrice
-        </button>
+      <div css={totalContainerStyles}>
+        <div css={totalStyles}>Cart total: {cartSum()}</div>
+        <Link href="/checkout">Checkout</Link>
       </div>
     </>
   );
