@@ -184,7 +184,7 @@ export default function Cart(props) {
                       X
                     </button>
                     <div css={titleStyles}>{currentProduct.name}</div>
-                    <div css={priceStyles}>{currentProduct.price}</div>
+                    <div css={priceStyles}>§ {currentProduct.price}</div>
                     <span>
                       <button
                         onClick={() => {
@@ -210,7 +210,7 @@ export default function Cart(props) {
         )}
       </div>
       <div css={totalContainerStyles}>
-        <div css={totalStyles}>Cart total: {cartSum()}</div>
+        <div css={totalStyles}>Cart total: § {cartSum()}</div>
         <Link href="/checkout">Checkout</Link>
       </div>
     </>

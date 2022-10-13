@@ -78,7 +78,7 @@ export default function Products(props) {
         </style>
       </Head>
       <div>
-        <h1 css={headerStyles}>produccs</h1>
+        <h1 css={headerStyles}>products</h1>
       </div>
       <div css={bodyStyles}>
         {props.products.map((singleProduct) => {
@@ -99,7 +99,7 @@ export default function Products(props) {
 
               <h3 css={descriptionStyles}>{singleProduct.description}</h3>
               <div css={baseWrapper}>
-                <div css={priceStyles}>{singleProduct.price}</div>
+                <div css={priceStyles}>§ {singleProduct.price}</div>
                 <button
                   css={buttonStyles}
                   onClick={() => {
