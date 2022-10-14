@@ -142,7 +142,32 @@ const summaryRowStyles = css`
   text-align: center;
 `;
 
+function sumProductQuantity(total, arrayObject) {
+  return total + arrayObject.price * arrayObject.quantity;
+}
+
+function returnTotalPrice(functionProps) {
+  const priceArray = functionProps.cart?.map((cart) => {
+    return {
+      price: functionProps.products.find(
+        (productObject) => cart.id === productObject.id,
+      )?.price,
+      quantity: cart.cart,
+    };
+  });
+  const cartTotal = priceArray?.reduce(sumProductQuantity, 0);
+  return cartTotal;
+}
+
 export default function Checkout(props) {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    window.location.href = '/hey-thanks';
+    props.setCart([]);
+  };
+
+  //const cartSum = () => returnTotalPrice(props);
+
   return (
     <>
       <Head>
@@ -162,20 +187,18 @@ export default function Checkout(props) {
             <h2>order summary</h2>
             <div css={summaryRowStyles}>
               <div>subtotal</div>
-              <div>{!props.cart?.length ? 0 : 'placeholder'}</div>
+              <div>placeholder</div>
             </div>
             <div css={summaryRowStyles}>
               <div>postage</div>
-              <div>{!props.cart?.length ? 0 : '§ 1000'}</div>
+              <div>{!props.cart?.length ? 0 : '§ 500'}</div>
             </div>
             <div css={summaryRowStyles}>
               <div>total</div>
-              <div>
-                {!props.cart?.length ? 0 : '§ ' + 'placeholder' + 29.99}
-              </div>
+              <div>{!props.cart?.length ? 0 : '§ ' + 500}</div>
             </div>
           </div>
-          <form /* onSubmit={handleSubmit} */>
+          <form onSubmit={handleSubmit}>
             <h2>where to, tho?</h2>
             <div css={halfWidthInputContainerStyles}>
               <div css={halfWidthInputStyles}>

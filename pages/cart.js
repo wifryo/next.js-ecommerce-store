@@ -2,9 +2,7 @@ import { css } from '@emotion/react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
 import { getProducts } from '../database/products';
-import { getParsedCookie } from '../utils/cookies';
 
 const bodyStyles = css`
   margin: 0px, 20px, 0px, 20px;
@@ -77,10 +75,39 @@ const deleteButtonStyles = css`
 
 const totalStyles = css``;
 
-const totalContainerStyles = css`
+const cartTotalStyles = css`
   position: fixed;
-  bottom: 50px;
-  left: 50vw;
+  bottom: 43px;
+  transition: all 0.5s ease-in-out;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #15141d;
+  padding-top: 20px;
+`;
+const confirmButtonStyles = css`
+  font-family: 'Montserrat Alternates', sans-serif;
+  padding: 15px 10px;
+  border: 2px solid #000000;
+  -webkit-transition: 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
+  text-decoration: none;
+  font-size: 18px;
+  text-align: center;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 300px;
+  background-color: #000000;
+  color: white;
+  &:hover {
+    background-image: url('/crundsp-eye.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #c9c7c7;
+    color: #000000;
+    font-weight: 1000;
+  }
 `;
 
 const headerStyles = css`
@@ -133,6 +160,7 @@ function returnTotalPrice(functionProps) {
 
 export default function Cart(props) {
   const cartSum = () => returnTotalPrice(props);
+
   return (
     <>
       <Head>
@@ -209,10 +237,17 @@ export default function Cart(props) {
           })
         )}
       </div>
-      <div css={totalContainerStyles}>
-        <div css={totalStyles}>Cart total: § {cartSum()}</div>
-        <Link href="/checkout">Checkout</Link>
-      </div>
+
+      {!props.cart?.length ? (
+        <div />
+      ) : (
+        <div css={cartTotalStyles}>
+          <div css={totalStyles}>Cart total: § {cartSum()}</div>
+          <Link href="/checkout">
+            <button css={confirmButtonStyles}>Checkout</button>
+          </Link>
+        </div>
+      )}
     </>
   );
 }

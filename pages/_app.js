@@ -1,6 +1,5 @@
 import { css, Global } from '@emotion/react';
 import { useEffect, useState } from 'react';
-import CookieBanner from '../components/CookieBanner';
 import Layout from '../components/Layout';
 import { getParsedCookie, setStringifiedCookie } from '../utils/cookies';
 
@@ -45,7 +44,6 @@ function MyApp({ Component, pageProps }) {
         `}
       />
 
-      <CookieBanner />
       <Layout cart={cart}>
         <Component {...pageProps} cart={cart} setCart={setCart} />
       </Layout>

@@ -85,13 +85,6 @@ export default function Header(props) {
           <Link href="/cart">
             <span css={cartStyles}> cart [{props.cart ? cartTotal() : 0}]</span>
           </Link>
-
-          {/*
-          Using an <a> tag is not best practice for
-          most links (it will be slower) - use a
-          Link component instead
-          <a href="/about">About</a>
-        */}
         </nav>
       </div>
       <div css={imageContainer}>

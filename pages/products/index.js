@@ -32,7 +32,7 @@ const imageStyles = css`
 `;
 
 const priceStyles = css`
-  font-weight: 700;
+  font-weight: 500;
   position: relative;
   padding-left: 10px;
   align-self: center;
@@ -59,6 +59,17 @@ const buttonStyles = css`
   font-family: 'Montserrat Alternates', sans-serif;
   font-size: 15px;
   margin-right: 10px;
+  &:hover {
+    background-image: url('/crundsp-eye.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #c9c7c7;
+    color: #15141d;
+    font-weight: 1000;
+  }
+  :active {
+    background-color: red;
+  }
 `;
 
 const baseWrapper = css`
@@ -131,7 +142,7 @@ export default function Products(props) {
                     props.setCart(newQuantity);
                   }}
                 >
-                  Add to cart
+                  add to cart
                 </button>
               </div>
             </div>
