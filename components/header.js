@@ -78,12 +78,20 @@ export default function Header(props) {
           <Link href="/">CRUNDSP</Link>
         </div>
         <nav css={navStyles}>
-          <Link href="/products">products</Link>
+          <Link href="/products">
+            <a data-test-id="products-link">products</a>
+          </Link>
           <Link href="/about">about</Link>
           <Link href="/team">team</Link>
           <Link href="/contact">contact</Link>
-          <Link href="/cart">
-            <span css={cartStyles}> cart [{props.cart ? cartTotal() : 0}]</span>
+          <Link data-test-id="cart-link" href="/cart">
+            <a data-test-id="cart-link">
+              <span css={cartStyles}> cart</span>
+              <span css={cartStyles} data-test-id="cart-count">
+                {' '}
+                [{props.cart ? cartTotal() : 0}]
+              </span>
+            </a>
           </Link>
         </nav>
       </div>

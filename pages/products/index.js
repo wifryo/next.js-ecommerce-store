@@ -35,7 +35,7 @@ const priceStyles = css`
   font-weight: 500;
   position: relative;
   padding-left: 10px;
-  align-self: center;
+  align-self: flex-end;
 `;
 
 const titleStyles = css`
@@ -59,6 +59,10 @@ const buttonStyles = css`
   font-family: 'Montserrat Alternates', sans-serif;
   font-size: 15px;
   margin-right: 10px;
+  width: 125px;
+  height: 25px;
+  align-self: flex-end;
+
   &:hover {
     background-image: url('/crundsp-eye.svg');
     background-repeat: no-repeat;
@@ -75,6 +79,7 @@ const buttonStyles = css`
 const baseWrapper = css`
   display: flex;
   justify-content: space-between;
+  flex-grow: 1;
 `;
 
 export default function Products(props) {
@@ -87,6 +92,10 @@ export default function Products(props) {
           @import
           url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,400;1,800&display=swap');
         </style>
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/icon-apple-touch.png" />
+        <link rel="manifest" href="/manifest.json" />
       </Head>
       <div>
         <h1 css={headerStyles}>products</h1>
@@ -104,7 +113,9 @@ export default function Products(props) {
               />
               <h2 css={titleStyles}>
                 <Link href={`/products/${singleProduct.id}`}>
-                  <a>{singleProduct.name}</a>
+                  <a data-test-id={`product-${singleProduct.id}`}>
+                    {singleProduct.name}
+                  </a>
                 </Link>
               </h2>
 

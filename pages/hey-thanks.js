@@ -81,7 +81,7 @@ export default function Contact() {
   return (
     <>
       <Head>
-        <title>products</title>
+        <title>Thank you for your order</title>
         <meta name="description" content="products" />
         <style>
           @import

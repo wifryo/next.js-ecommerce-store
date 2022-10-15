@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 import Head from 'next/head';
+import { getProducts } from '../database/products';
 
 const headerStyles = css``;
 
@@ -135,6 +136,7 @@ const summaryBoxStyles = css`
   gap: 20px;
   padding: 30px;
 `;
+
 const summaryRowStyles = css`
   display: flex;
   flex-direction: row;
@@ -166,13 +168,13 @@ export default function Checkout(props) {
     props.setCart([]);
   };
 
-  //const cartSum = () => returnTotalPrice(props);
+  const cartSum = () => returnTotalPrice(props);
 
   return (
     <>
       <Head>
-        <title>products</title>
-        <meta name="description" content="products" />
+        <title>checkout</title>
+        <meta name="description" content="checkout" />
         <style>
           @import
           url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,400;1,800&display=swap');
@@ -187,7 +189,7 @@ export default function Checkout(props) {
             <h2>order summary</h2>
             <div css={summaryRowStyles}>
               <div>subtotal</div>
-              <div>placeholder</div>
+              <div>§ {cartSum()}</div>
             </div>
             <div css={summaryRowStyles}>
               <div>postage</div>
@@ -195,7 +197,7 @@ export default function Checkout(props) {
             </div>
             <div css={summaryRowStyles}>
               <div>total</div>
-              <div>{!props.cart?.length ? 0 : '§ ' + 500}</div>
+              <div>{!props.cart?.length ? 0 : '§ ' + (500 + cartSum())}</div>
             </div>
           </div>
           <form onSubmit={handleSubmit}>
@@ -306,4 +308,13 @@ export default function Checkout(props) {
       </div>
     </>
   );
+}
+
+export async function getServerSideProps() {
+  const products = await getProducts();
+  return {
+    props: {
+      products: products,
+    },
+  };
 }

@@ -82,7 +82,7 @@ export default function Contact() {
     <>
       <Head>
         <title>products</title>
-        <meta name="description" content="products" />
+        <meta name="description" content="contact" />
         <style>
           @import
           url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,400;1,800&display=swap');

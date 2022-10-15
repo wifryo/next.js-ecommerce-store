@@ -8,6 +8,7 @@ const footerStyles = css`
   justify-content: center;
   color: #eaebe2;
   font-size: 10px;
+  z-index: 10;
 `;
 
 const logoStyles = css`

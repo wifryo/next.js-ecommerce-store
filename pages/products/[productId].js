@@ -59,6 +59,7 @@ export default function Products(props) {
         <h1>{props.singleProduct.name}</h1>
         <div css={descriptionStyles}>{props.singleProduct.description}</div>
         <Image
+          data-test-id="product-image"
           css={imageStyles}
           src={`/crumps/crump${props.singleProduct.id}.webp`}
           alt={`photo of ${props.singleProduct.name}`}
@@ -79,6 +80,7 @@ export default function Products(props) {
         </button>
         <span>
           <div data-test-id="product-quantity">{selectedQuantity}</div>
+          <div data-test-id="product-price">{props.singleProduct.price}</div>
         </span>
         <button
           onClick={() => setSelectedQuantity(selectedQuantity + 1)}

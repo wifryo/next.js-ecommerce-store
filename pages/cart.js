@@ -24,6 +24,7 @@ const cardStyles = css`
   justify-content: center;
   margin-bottom: 50px;
 `;
+
 const imageStyles = css`
   margin: 0;
 `;
@@ -76,8 +77,8 @@ const deleteButtonStyles = css`
 const totalStyles = css``;
 
 const cartTotalStyles = css`
-  position: fixed;
-  bottom: 43px;
+  position: sticky;
+  bottom: 0px;
   transition: all 0.5s ease-in-out;
   width: 100%;
   display: flex;
@@ -85,7 +86,9 @@ const cartTotalStyles = css`
   align-items: center;
   background-color: #15141d;
   padding-top: 20px;
+  padding-bottom: 10px;
 `;
+
 const confirmButtonStyles = css`
   font-family: 'Montserrat Alternates', sans-serif;
   padding: 15px 10px;
@@ -204,6 +207,7 @@ export default function Cart(props) {
                 <div css={containerStyles}>
                   <div css={descriptionsStyles}>
                     <button
+                      data-test-id={`cart-product-remove-${currentProduct.id}`}
                       css={deleteButtonStyles}
                       onClick={() => {
                         removeItem(props, currentProduct.id);
@@ -221,7 +225,12 @@ export default function Cart(props) {
                       >
                         -
                       </button>
-                      <span css={quantityStyles}>{singleProduct.cart}</span>
+                      <span
+                        data-test-id={`cart-product-quantity-${currentProduct.id}`}
+                        css={quantityStyles}
+                      >
+                        {singleProduct.cart}
+                      </span>
                       <button
                         onClick={() => {
                           increaseItem(props, currentProduct.id);
@@ -242,9 +251,14 @@ export default function Cart(props) {
         <div />
       ) : (
         <div css={cartTotalStyles}>
-          <div css={totalStyles}>Cart total: § {cartSum()}</div>
+          <span>cart total: §</span>
+          <span data-test-id="cart-total" css={totalStyles}>
+            {cartSum()}
+          </span>
           <Link href="/checkout">
-            <button css={confirmButtonStyles}>Checkout</button>
+            <button data-test-id="cart-checkout" css={confirmButtonStyles}>
+              checkout
+            </button>
           </Link>
         </div>
       )}
