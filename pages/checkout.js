@@ -17,6 +17,8 @@ const formStyles = css`
   flex-direction: column;
   gap: 20px;
   align-items: center;
+  border-left: 1px solid rgba(234, 235, 226, 0.2);
+  border-right: 1px solid rgba(234, 235, 226, 0.2);
 `;
 
 const halfWidthInputContainerStyles = css`
@@ -34,7 +36,6 @@ const fullWidthInputStyles = css`
     padding: 5px;
     margin-top: 5px;
     color: #eaebe2;
-
     border: 1px solid #eaebe2;
     background-color: transparent;
   }
@@ -117,6 +118,7 @@ const confirmButtonStyles = css`
   text-align: center;
   cursor: pointer;
   margin-top: 50px;
+  margin-bottom: 50px;
   width: 500px;
   background-color: #000000;
   color: white;
