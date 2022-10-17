@@ -1,8 +1,14 @@
 import { css } from '@emotion/react';
+import { GetServerSidePropsResult } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getProducts } from '../../database/products';
+import { getProducts, Product } from '../../database/products';
+import {
+  CartItem,
+  getParsedCookie,
+  setStringifiedCookie,
+} from '../utils/cookies';
 
 const headerStyles = css`
   margin-left: calc(50vw - 350px);
@@ -82,7 +88,13 @@ const baseWrapper = css`
   flex-grow: 1;
 `;
 
-export default function Products(props) {
+type Props = {
+  products: Product[];
+  cart: CartItem;
+  setCart: CartItem;
+};
+
+export default function Products(props: Props) {
   return (
     <>
       <Head>
@@ -98,7 +110,7 @@ export default function Products(props) {
         <link rel="manifest" href="/manifest.json" />
       </Head>
       <div>
-        <h1 css={headerStyles}>productss</h1>
+        <h1 css={headerStyles}>products</h1>
       </div>
       <div css={bodyStyles}>
         {props.products.map((singleProduct) => {
@@ -136,7 +148,7 @@ export default function Products(props) {
                     }
 
                     const foundCookie = props.cart?.find(
-                      (cookieProductObject) =>
+                      (cookieProductObject: Product) =>
                         cookieProductObject.id === singleProduct.id,
                     );
 
@@ -164,7 +176,9 @@ export default function Products(props) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(): Promise<
+  GetServerSidePropsResult<Props>
+> {
   const products = await getProducts();
   return {
     props: {

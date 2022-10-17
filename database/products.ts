@@ -7,6 +7,13 @@ export type Products = {
   price: number;
 };
 
+export type Product = {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+};
+
 // Get all products
 export async function getProducts() {
   const products = await sql<Products[]>`

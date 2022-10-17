@@ -12,7 +12,7 @@ export default function Home() {
     <>
       <Head>
         <title>Home</title>
-        <meta name="description" content="Overview of the animals" />
+        <meta name="description" content="Homepage" />
         <style>
           @import
           url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,400;1,800&display=swap');
