@@ -1,9 +1,17 @@
-import { css } from '@emotion/react';
 import Head from 'next/head';
+import { CartItem } from '../utils/cookies';
 import Footer from './Footer';
 import Header from './Header';
 
-export default function Layout(props) {
+type Props = {
+  cart?: CartItem;
+};
+
+type ChildrenProps = {
+  children: JSX.Element;
+};
+
+export default function Layout(props: Props & ChildrenProps) {
   return (
     <>
       <Head>

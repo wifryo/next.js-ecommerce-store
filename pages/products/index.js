@@ -1,14 +1,8 @@
 import { css } from '@emotion/react';
-import { GetServerSidePropsResult } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getProducts, Product } from '../../database/products';
-import {
-  CartItem,
-  getParsedCookie,
-  setStringifiedCookie,
-} from '../utils/cookies';
+import { getProducts } from '../../database/products';
 
 const headerStyles = css`
   margin-left: calc(50vw - 350px);
@@ -88,13 +82,20 @@ const baseWrapper = css`
   flex-grow: 1;
 `;
 
-type Props = {
-  products: Product[];
-  cart: CartItem;
-  setCart: CartItem;
-};
+export default function Products(props) {
+  if ('error' in props) {
+    return (
+      <div>
+        <Head>
+          <title>Product not found</title>
+          <meta name="description" content="error time" />
+        </Head>
+        <h1>{props.error}</h1>
+        Sorry, try the <Link href="/products">products page</Link>
+      </div>
+    );
+  }
 
-export default function Products(props: Props) {
   return (
     <>
       <Head>
@@ -148,7 +149,7 @@ export default function Products(props: Props) {
                     }
 
                     const foundCookie = props.cart?.find(
-                      (cookieProductObject: Product) =>
+                      (cookieProductObject) =>
                         cookieProductObject.id === singleProduct.id,
                     );
 
@@ -176,9 +177,7 @@ export default function Products(props: Props) {
   );
 }
 
-export async function getServerSideProps(): Promise<
-  GetServerSidePropsResult<Props>
-> {
+export async function getServerSideProps() {
   const products = await getProducts();
   return {
     props: {

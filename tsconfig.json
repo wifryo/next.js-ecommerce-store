@@ -13,15 +13,14 @@
     "allowSyntheticDefaultImports": true,
     "downlevelIteration": true,
     "forceConsistentCasingInFileNames": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "jsxImportSource": "@emotion/react",
-
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true,
     "strict": true,
-    "noUncheckedIndexedAccess": true,
-    "incremental": true
+    "incremental": true,
+    "noUncheckedIndexedAccess": true
   },
   "include": [
     "**/.eslintrc.cjs",

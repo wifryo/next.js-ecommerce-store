@@ -1,6 +1,5 @@
 import { css } from '@emotion/react';
 import Head from 'next/head';
-import Link from 'next/link';
 
 const bodyStyles = css`
   margin: 0px, 20px, 0px, 20px;

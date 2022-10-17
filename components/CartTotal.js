@@ -1,5 +1,4 @@
 import { css } from '@emotion/react';
-import { useState } from 'react';
 
 // isItemInCart is a Boolean
 const cartTotalStyles = (isItemInCart) => css`
@@ -15,7 +14,7 @@ const cartTotalStyles = (isItemInCart) => css`
 `;
 
 export default function CartTotal(props) {
-  let isItemInCart = !props.cart?.length ? true : false;
+  const isItemInCart = !props.cart?.length ? true : false;
 
   return (
     <div css={cartTotalStyles(isItemInCart)}>
