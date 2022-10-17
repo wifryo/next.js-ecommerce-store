@@ -98,7 +98,7 @@ export default function Products(props) {
         <link rel="manifest" href="/manifest.json" />
       </Head>
       <div>
-        <h1 css={headerStyles}>products</h1>
+        <h1 css={headerStyles}>productss</h1>
       </div>
       <div css={bodyStyles}>
         {props.products.map((singleProduct) => {
