@@ -251,7 +251,7 @@ export default function Checkout(props) {
               </div>
               <div css={halfWidthInputStyles}>
                 <label htmlFor="planet">planet</label>
-                <input id="planet" data-test-id="checkout-planet" required />
+                <input id="planet" data-test-id="checkout-planet" />
               </div>
             </div>
 
@@ -294,7 +294,6 @@ export default function Checkout(props) {
                   id="pledge-of-allegiance"
                   data-test-id="pledge-of-allegiance"
                   placeholder="I hereby pledge/reiterate my undying loyalty..."
-                  required
                 />
               </div>
             </div>
