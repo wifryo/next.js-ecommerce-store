@@ -8,7 +8,7 @@ export function getParsedCookie(key: string): CartItem[] | undefined {
   }
 
   try {
-    return JSON.parse(cookieValue); // Type should be a string
+    return JSON.parse(cookieValue);
   } catch (err) {
     return undefined;
   }
