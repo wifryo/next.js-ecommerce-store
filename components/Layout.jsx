@@ -1,24 +1,15 @@
 import Head from 'next/head';
-import { CartItem } from '../utils/cookies';
 import Footer from './Footer';
 import Header from './Header';
 
-type Props = {
-  cart?: CartItem;
-};
-
-type ChildrenProps = {
-  children: JSX.Element;
-};
-
-export default function Layout(props: Props & ChildrenProps) {
+export default function Layout(props) {
   return (
     <>
       <Head>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header cart={props.cart} />
+      <Header cart={props.cart} setCart={props.setCart} />
 
       <main>{props.children}</main>
 

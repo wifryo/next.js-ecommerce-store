@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie';
 
 export function getParsedCookie(key: string): CartItem[] | undefined {
-  const cookieValue = Cookies.get(key); // Type string | Undefined
+  const cookieValue = Cookies.get(key);
 
   if (!cookieValue) {
     return undefined;
