@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@emotion/react": "^11.10.4",
-    "@emotion/types": "^0.7.0",
     "@playwright/test": "^1.27.1",
     "@types/dotenv-safe": "^8.1.2",
     "@types/js-cookie": "^3.0.2",
