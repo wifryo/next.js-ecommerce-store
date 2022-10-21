@@ -18,7 +18,7 @@ export default function Home() {
         </style>
       </Head>
 
-      <div css={bodyStyles}>BODY!</div>
+      <div css={bodyStyles}>body alert</div>
     </>
   );
 }
