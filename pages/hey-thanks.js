@@ -28,9 +28,7 @@ export default function Contact() {
       <div>
         <h1 css={headerStyles}>thanks</h1>
       </div>
-      <div css={mainStyles}>
-        hey, thanks! ngl tho you probably aren't actually going to get anything
-      </div>
+      <div css={mainStyles}>hey, thanks!</div>
     </>
   );
 }
