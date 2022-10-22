@@ -3,7 +3,7 @@ import Head from 'next/head';
 
 const mainStyles = css`
   margin: 0px, 20px, 0px, 20px;
-  min-height: calc(100vh - 455px);
+  min-height: calc(100vh - 432px);
   display: flex;
   flex-wrap: wrap;
   position: relative;

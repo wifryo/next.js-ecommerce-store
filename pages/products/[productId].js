@@ -8,7 +8,11 @@ import { getProductById } from '../../database/products';
 const imageStyles = css`
   margin: 0;
 `;
-const marginStyles = css`
+
+const bodyStyles = css`
+  margin: 0px, 20px, 0px, 20px;
+  min-height: calc(100vh - 371px);
+
   margin-right: calc(50vw - 370px);
   margin-left: calc(50vw - 370px);
 `;
@@ -45,7 +49,7 @@ export default function Products(props) {
 
   return (
     <div>
-      <div css={marginStyles}>
+      <div css={bodyStyles}>
         <Head>
           <title>Product single page</title>
           <meta name="description" content="Product single page" />

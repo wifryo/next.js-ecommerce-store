@@ -62,7 +62,13 @@ const cartStyles = css`
   color: #eaebe2;
   text-decoration: none;
   font-size: 12px;
-  margin-left: 13px;
+  cursor: pointer;
+`;
+
+const cartNumberStyles = css`
+  color: #eaebe2;
+  text-decoration: none;
+  font-size: 12px;
   cursor: pointer;
 `;
 
@@ -87,7 +93,7 @@ export default function Header(props) {
           <Link data-test-id="cart-link" href="/cart">
             <a data-test-id="cart-link">
               <span css={cartStyles}> cart</span>
-              <span css={cartStyles} data-test-id="cart-count">
+              <span css={cartNumberStyles} data-test-id="cart-count">
                 {' '}
                 [{props.cart ? cartTotal() : 0}]
               </span>

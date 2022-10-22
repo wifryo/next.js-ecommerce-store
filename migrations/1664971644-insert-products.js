@@ -31,6 +31,43 @@ const products = [
     description: `the CRUNDSP WHAMMER-82 - an experimental model enhanced with gleeb snips, this computer is intended for developmental use only.`,
     price: 10000,
   },
+  {
+    name: 'borgus beef coffee table fountain',
+    description: `that’ll leave a mark! prove YOU’RE the “roast toasterson” of your community with the new borgus beef coffee table fountain - made with real artificial beef!`,
+    price: 5000,
+  },
+  {
+    name: 'anti-floatson neon slurp system',
+    description: `“where’s whengus?” “crendemulating”
+
+    don’t be that guy. crendemulating when the galaxy is so imperilled? put a stop to such nonsense NOW, with the CRUNDSP *anti-floatson neon slurp system. s*top those floaty bastards in their tracks!`,
+    price: 7000,
+  },
+  {
+    name: 'whazz juice',
+    description: `the new CRUNDSP whazz juice: is your dinner, application session, or tinque party missing that certain something? “whazz” it up! may cause dilation of eyes, thoractic ducts, or time. Do not use if experiencing a sense of foreboding.`,
+    price: 2500,
+  },
+  {
+    name: 'eccentric squenchloader',
+    description: `the eccentric squenchloader is BACK! refurbished, updated and packed with as many new features are there are species of insect left on planet earth (that’s right - 4!), you’ll remember why this is, and always will be, a classic of blurpfian engineering design.`,
+    price: 10000,
+  },
+  {
+    name: 'fairy dust bread',
+    description: `the incursion of the eldritch horrors of the late 23nd century was no laughing matter - but at least it gave rise (!) to fairy dust bread. not recommended for direct descendants of veterans of the conflict.`,
+    price: 1500,
+  },
+  {
+    name: 'chair',
+    description: `one of our enduring classics, the CRUNDSP chair continues to defy its critics, most bees, and two natural laws. sit in one today*!`,
+    price: 10000,
+  },
+  {
+    name: 'universe bowl',
+    description: `while stocks last - edible consciousness, from CRUNDSP! have you ever wondered what the manifestation of consciousness really tastes like? sourced from minimally-ethical chundral outposts in the parj-barlop belt, these bowls of [noun] pack a real wallop.`,
+    price: 100000,
+  },
 ];
 
 exports.up = async (sql) => {

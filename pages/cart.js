@@ -6,7 +6,7 @@ import { getProducts } from '../database/products';
 
 const bodyStyles = css`
   margin: 0px, 20px, 0px, 20px;
-  min-height: calc(100vh - 455px);
+  min-height: calc(100vh - 432px);
   display: flex;
   flex-wrap: wrap;
   position: relative;
@@ -74,8 +74,6 @@ const deleteButtonStyles = css`
   cursor: pointer;
 `;
 
-const totalStyles = css``;
-
 const cartTotalStyles = css`
   position: sticky;
   bottom: 0px;
@@ -89,18 +87,20 @@ const cartTotalStyles = css`
   padding-bottom: 10px;
 `;
 
+const cartTotalTextStyles = css``;
+
 const confirmButtonStyles = css`
   font-family: 'Montserrat Alternates', sans-serif;
-  padding: 15px 10px;
+  padding: 10px 10px;
   border: 2px solid #000000;
   -webkit-transition: 0.2s ease-in-out;
   transition: 0.2s ease-in-out;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 16px;
   text-align: center;
   cursor: pointer;
-  margin-top: 20px;
-  width: 300px;
+  margin-top: 10px;
+  width: 200px;
   background-color: #000000;
   color: white;
   &:hover {
@@ -251,10 +251,10 @@ export default function Cart(props) {
         <div />
       ) : (
         <div css={cartTotalStyles}>
-          <span>cart total: §</span>
-          <span data-test-id="cart-total" css={totalStyles}>
-            {cartSum()}
-          </span>
+          <div css={cartTotalTextStyles}>
+            <span>cart total: §</span>
+            <span data-test-id="cart-total">{cartSum()}</span>
+          </div>
           <Link href="/checkout">
             <button data-test-id="cart-checkout" css={confirmButtonStyles}>
               checkout
